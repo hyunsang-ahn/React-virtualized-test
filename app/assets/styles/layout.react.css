@@ -1,0 +1,17 @@
+html,
+body {
+	margin: 0;
+	/* font-family: nanumgothic, 'Nanum Gothic', sans-serif; */
+	font-family: 'Noto Sans KR';
+	font-size: 14px;
+	color: #333333;
+	min-height: 100vh;
+}
+
+select,
+input {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	-webkit-appearance: none;
+}

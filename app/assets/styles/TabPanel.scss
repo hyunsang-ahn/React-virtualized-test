@@ -1,0 +1,15 @@
+$basic: 100vw;
+$R: 100vw / 360;
+
+.MuiTab-wrapper {
+  color: black;
+  font-size: 16* $R;
+}
+
+.MuiTab-wrapper:hover {
+  color: #f0af24;
+}
+.MuiTab-wrapper::-moz-selection {
+  color: #f0af24;
+  border-bottom: 3* $R solid #f0af24;
+}

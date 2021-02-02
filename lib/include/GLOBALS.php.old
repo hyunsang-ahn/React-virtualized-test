@@ -1,0 +1,45 @@
+<?php
+
+// insert by pauljo 2015/10/02
+// 프로모션용으로 푸시 보낼 때 필요하다.
+$GLOBALS ['devsvr'] = array (
+        1 => 'devadmin.cash-cow.co.kr',
+        2 => 'devapi.cash-cow.co.kr',
+        3 => 'devwww.cash-cow.co.kr',
+        4 => 'ec2-54-65-230-96.ap-northeast-1.compute.amazonaws.com',
+        5 => 'ec2-54-67-13-158.us-west-1.compute.amazonaws.com',
+        6 => 'devadmin.b334.simje.cash-cow.co.kr',
+        7 => 'mail.enbsoft.com',
+        8 => 'devmall.cash-cow.co.kr' 
+);
+
+// insert by ikang 2016/03/07
+$GLOBALS ['idsvr'] = array (
+        1 => 'cashcow.id',
+        2 => 'cashcow.co.id',
+        3 => 'admin.cashcow.co.id',
+        4 => 'admin.cashcow.id' 
+);
+
+// insert by simje 16/03/08
+// 가상매장 하루 최대 리워드 승인 횟수
+$GLOBALS ['max_daily_accept_virtual_store'] = 3;
+
+// 추천할 수 있는 최대 회수 ikang 2016-04-02
+$GLOBALS ['max_recin_count'] = 20;
+$GLOBALS ['recin_reward_point'] = 300;
+
+// SEED 암호키
+// app mall ver에 따라서 다르게 설정 by ksson 180918
+// seed_opmode 추가 by hsji 181002
+// $GLOBALS['app_mall_ver'] empty 인 경우 Session appver이 있는지 체크 by hsji 181002
+if ((!empty($GLOBALS['app_mall_ver']) && version_compare($GLOBALS['app_mall_ver'], '6.0.0') >= 0) 
+    || (isset($_SESSION['appver']) && version_compare($_SESSION['appver'], '6.0.0') >= 0)) {
+    $GLOBALS ['seed_key'] = 'cashcow0831!@#$%';
+    $GLOBALS ['seed_opmode'] = 'CBC';
+} else {
+    $GLOBALS ['seed_key'] = 'cashcow0804!@#$%';
+    $GLOBALS ['seed_opmode'] = 'ECB';
+}
+
+defined ( "CL_RESETDAY" ) or define ( "CL_RESETDAY", 10 ); // 등급 재설정일

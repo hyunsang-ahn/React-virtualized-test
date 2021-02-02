@@ -1,0 +1,22 @@
+<?php
+$functions = new Functions;
+
+// seed 복호화 by ksson 2017 06 01
+// Functions 에서 옮김
+// $opmode 추가 by hsji 181002
+function seed_decrypt($ciphertext, $seed_key)
+{
+    global $log;
+    $log->debug_func ();
+    
+    $seed = new \Utility\Seed ();
+    
+    $tmp = base64_decode ( strtr ( $ciphertext, '-_,', '+/=' ) );
+    
+    $opmode = isset($GLOBALS ['seed_opmode'])?$GLOBALS ['seed_opmode']:'ECB';
+    
+    $plaintext = $seed->decrypt ( $seed_key, $tmp, 'nohex', $opmode);
+    $log->debug ( "base64 decode + seed decrypt = $plaintext" );
+    
+    return $plaintext;
+}

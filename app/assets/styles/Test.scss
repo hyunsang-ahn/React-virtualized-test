@@ -1,0 +1,7 @@
+$basic: 100vw;
+$R: 100vw / 360;
+
+button .TabBarContent:hover {
+  color: #f0af24;
+  border-bottom: 3 * $R solid #f0af24;
+}

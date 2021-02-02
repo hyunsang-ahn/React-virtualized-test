@@ -1,0 +1,63 @@
+/* 여기서부터는 react pseudo elements 입니다. 
+react pseudo elements 를 리엑트에서 직접 이용할수 없기에 scss 형태로 이용*/
+
+/* Login.jsx */
+.form_control {
+  width: 91.6%;
+
+  display: inline-block;
+  /* 인풋 버튼내 공백을 주기위한 패딩입니다...*/
+  padding-left: 4.2%;
+  padding-left: 4.2%;
+  height: 100%;
+  text-align: left;
+  border-style: solid;
+  border-color: #c6c6c6;
+  text-decoration-color: #c6c6c6;
+  font-family: "Noto Sans KR";
+  /* cursor: pointer; */
+}
+.form_control:focus {
+  outline: none !important;
+  border-style: solid;
+  border-color: #f0af24;
+  box-shadow: 0 0 1px #f0af24;
+}
+.btn {
+  border: none;
+  text-decoration: none;
+  background-color: #666666;
+  width: 100%;
+  color: #ffffff;
+  font-family: "Noto Sans KR";
+}
+
+.btn:disabled,
+.btn[disabled] {
+  border: none;
+  background-color: #c7c7c7;
+  color: #ffffff;
+}
+/* Login.jsx 완료*/
+
+/* Notice_detail.jsx */
+
+.NoticeDetail_contents img {
+  max-width: 100%;
+  height: auto;
+}
+
+.NoticeDetail_contents video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Notice_detail.jsx완료 */
+
+/* TermsList.jsx */
+.TermsList_contents img {
+  height: auto;
+}
+/* TermsList.jsx 완료 */
+
+

@@ -1,0 +1,59 @@
+<?php
+/**
+ * @file lib/include/redis.php
+ * 
+ * lib/include/memcache.php 대체를 위함
+ * site 아래의 파일을 가져와 불필요한 코드는 제거 by ksson 181128
+ * 
+ * @author simje 180327
+ */
+$log->debug ( "---------- " . basename ( __FILE__ ) );
+
+
+function connect_redis()
+{
+    global $redis_host, $redis_port, $redis_database, $log, $redis;
+    
+    $log->trace_func ();
+
+    if ($redis!=null) return $redis;
+    
+    $redis = new Redis ();
+    if ($redis== NULL) {
+        $log->warn ( "new alloc Redis fail for $redis_host" );
+        return false;
+    }
+    
+    $r = $redis->connect ( $redis_host, $redis_port);
+    if ($r === FALSE) {
+        $log->warn ( "Redis connect fail for $redis_host" );
+        return false;
+    }
+    if (!empty($redis_database)) $r = $redis->select($redis_database);
+    if ($r === FALSE) {
+        $log->warn ( "Redis select fail for $redis_host/$redis_database" );
+        close_redis();
+        return false;
+    }
+    
+    $log->debug ( __FUNCTION__."() for $redis_host done" );
+    
+    return $redis;
+}
+
+function close_redis()
+{
+    global $log, $redis, $redis_host;
+    
+    $log->trace_func ();
+    
+    if ($redis!= NULL) {
+        $ret = $redis->close ();
+        $log->debug( __FUNCTION__."() for $redis_host result=".($ret==false?'false':$ret) );
+        $redis= null;
+        return $ret;
+    } else {
+        $log->warn( __FUNCTION__."() for $redis_host fail - there is no instance" );
+        return false;
+    }
+}

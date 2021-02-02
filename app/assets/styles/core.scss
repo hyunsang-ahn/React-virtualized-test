@@ -1,0 +1,72 @@
+$base-background-color: #f1f1f1;
+$base-color: #f0af24;
+$base-font: 'Noto Sans KR';
+$Roboto-font: 'Roboto';
+$R: 100vw / 360;
+// html {
+//   line-height: 1; /* 1 */
+//   -webkit-text-size-adjust: 100%; /* 2 */
+// }
+// input {
+//   border-radius: 0;
+// }
+
+// input[type="search"] {
+//   -webkit-appearance: none;
+// }
+
+/*기본 div는 중앙정렬/14폰트사이즈/noto sans 폰트/마진 auto 값을 갖는다.*/
+div {
+  text-align: center;
+  font-size: 14 * $R;
+  font-family: $base-font;
+  // margin: auto;
+  width: 100%;
+  // display: inline-block;
+  color: #333333;
+
+  /*className 중 line 값에 대한 값*/
+  .line {
+    width: '100%';
+    height: 10 * $R;
+    background-color: $base-background-color;
+  }
+}
+// button:hover {
+//   color: #f0af24;
+//   border-bottom: 3 * $R solid #f0af24;
+// }
+
+// .TabBarContent:hover {
+//   color: #f0af24 !important;
+//   border-bottom: 3 * $R solid #f0af24 !important;
+// }
+.TabBarContent {
+  color: #333333;
+  transition: color 0.1s linear; /* vendorless fallback */
+  -o-transition: color 0.1s linear; /* opera */
+  -ms-transition: color 0.1s linear; /* IE 10 */
+  -moz-transition: color 0.1s linear; /* Firefox */
+  -webkit-transition: color 0.1s linear; /*safari and chrome */
+}
+textarea:focus,
+input:focus {
+  outline: none;
+  color: black;
+}
+input.input-text {
+  caret-color: black;
+}
+
+// .TabBarContent:focus {
+//   color: #f0af24 !important;
+//   border-bottom: 3 * $R solid #f0af24 !important;
+// }
+
+// the :export directive is the magic sauce for webpack
+:export {
+  baseColor: $base-color;
+  baseBackgroundColor: $base-background-color;
+  baseFont: $base-font;
+  Roboto: $Roboto-font;
+}
