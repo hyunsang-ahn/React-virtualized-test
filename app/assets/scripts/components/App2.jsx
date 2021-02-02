@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, Route, BrowserRouter as Router} from 'react-router-dom';
 /*상품 상세 페이지*/
-import Portal from './Portal';
+import Portal from './Portal_onlyList';
 /*온라인몰 상세 페이지*/
 import Onlinemall_detail from './Onlinemall_detail';
 

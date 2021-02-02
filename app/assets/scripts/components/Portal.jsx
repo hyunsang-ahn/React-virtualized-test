@@ -1,5 +1,6 @@
 import { List, WindowScroller } from "react-virtualized";
 import React from 'react';
+import Util from '../utils/util'
 const rowCount = 100;
 const listHeight = 640;
 const rowWidth = 360;
@@ -21,21 +22,22 @@ class Portal extends React.Component {
 
   }
 
-  handle = () => {
-    this.state.list = [...this.state.list, { id: 1001, name: "haha", image: '', text: 'hahahahahaha' }];
-    this.forceUpdate();
-    // this.refs.List.scrollToRow(this.state.list.length);
-  };
+  // handle = () => {
+  //   this.state.list = [...this.state.list, { id: 1001, name: "haha", image: '', text: 'hahahahahaha' }];
+  //   this.forceUpdate();
+  //   // this.refs.List.scrollToRow(this.state.list.length);
+  // };
 
-  // Check the change of the list, and trigger the scroll
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate!!!')
-    if (this.state.list.length !== prevState.list.length) {
-      this.refs.List.scrollToRow(this.state.list.length);  
-    }
-  }
+  // // Check the change of the list, and trigger the scroll
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('componentDidUpdate!!!')
+  //   if (this.state.list.length !== prevState.list.length) {
+  //     this.refs.List.scrollToRow(this.state.list.length);  
+  //   }
+  // }
   renderRow({ index, key, style }) {
     console.log('____________', index);
+    console.log(' document.documentElement.scrollTop', document.documentElement.scrollTop);
 
     return (
       <div key={key} style={style} 
@@ -47,6 +49,7 @@ class Portal extends React.Component {
           },
           search: `?omidx=${index}`,
         });
+        document.cookie=`scrollY=${document.documentElement.scrollTop}`
       }}
       >
         {index %2 === 0 ? (
@@ -100,14 +103,40 @@ class Portal extends React.Component {
    componentDidMount(){
     console.log('componentDidMount!!')
 
+    this.docReady(function() {
+      // DOM is loaded and ready for manipulation here
+      // var scrollY = Util.getCookieValue('scrollY')  * 1
+      // window.scrollTo(0,scrollY)
+      console.log(this.listRef)
+  });
    }
+   docReady(fn) {
+    // see if DOM is already available
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        // call on next available tick
+        setTimeout(fn, 1);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}    
+
   listRef = React.createRef();
 
   onRowsRendered = ({ startIndex, stopIndex }) => {
     console.log('startIndex........', startIndex)
     console.log('stopIndex........', stopIndex)
     console.log(this.listRef.current)
-
+    if(this.listRef.current){
+      console.log('scrollTop........................',
+        this.listRef.current.props.scrollTop
+      )
+      console.log('scrollToIndex........................',
+        this.listRef.current.props.scrollToIndex
+      )
+      console.log('scrollToRow........................',
+        this.listRef.current.props.scrollToRow
+      )
+    }
     // this.listRef.current.scrollToRow(startIndex)
   };
   render() {
@@ -120,7 +149,6 @@ class Portal extends React.Component {
           {({ height, isScrolling, onChildScroll, scrollTop }) =>{
             console.log(scrollTop) 
             console.log(isScrolling) 
-
             return(
             <div>
               <div style={{
@@ -140,9 +168,9 @@ class Portal extends React.Component {
                 onRowsRendered={this.onRowsRendered}
 
                 rowCount={this.state.list.length}
-                scrollTop={scrollTop}
+                scrollTop={17239}
                 width={rowWidth}
-                // scrollToRow={this.state.scrollToRow}
+
 
               />
             </div>
