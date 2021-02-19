@@ -96,8 +96,6 @@ class Portal_onlyList extends React.Component {
     console.log(scrollHeight)
     console.log(scrollTop)
     this.scrollY = scrollTop
-
-
   }
 
   render() {
