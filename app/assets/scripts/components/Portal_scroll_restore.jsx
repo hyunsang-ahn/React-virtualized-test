@@ -217,17 +217,17 @@ class Portal_scroll_restore extends React.Component {
     );
   }
   componentDidUpdate(prevProps, prevState){
-      // if(prevState.tab !== this.state.tab){
-      //     console.log('변경')
-      //     if(this.state.tab==='online'){
-      //         this.scrollY_goods = window.scrollY
-      //         window.scrollTo(0,this.scrollY_online)
-      //     }else{
-      //       this.scrollY_online = window.scrollY
-      //       window.scrollTo(0,this.scrollY_goods)
+      if(prevState.tab !== this.state.tab){
+          console.log('변경')
+          if(this.state.tab==='online'){
+              this.scrollY_goods = window.scrollY
+              window.scrollTo(0,this.scrollY_online)
+          }else{
+            this.scrollY_online = window.scrollY
+            window.scrollTo(0,this.scrollY_goods)
 
-      //     }
-      // }
+          }
+      }
   }
   render() {
     console.log('render!!')
